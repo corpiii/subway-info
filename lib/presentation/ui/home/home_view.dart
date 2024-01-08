@@ -37,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
         return const SizedBox(
           height: 100,
           width: double.infinity,
-          child: StationListItem(name: '서울역', number: 1, lineNumber: "1001"),
+          child: StationListItem(name: '서울역', number: '1', lineNumber: "1001"),
         );
       },
       separatorBuilder: (context, index) {

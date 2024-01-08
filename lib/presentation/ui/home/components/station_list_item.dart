@@ -3,13 +3,13 @@ import 'package:subway_info/presentation/ui/home/components/line_number_icon.dar
 
 final class StationListItem extends StatelessWidget {
   final String _name;
-  final int _number;
+  final String _number;
   final String _lineNumber;
 
   const StationListItem({
     super.key,
     required String name,
-    required int number,
+    required String number,
     required String lineNumber,
   })  : _name = name,
         _number = number,
@@ -21,8 +21,8 @@ final class StationListItem extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
-          const LineNumberIcon(
-            lineNumber: "1001",
+          LineNumberIcon(
+            lineNumber: _lineNumber,
           ),
           const SizedBox(
             width: 12.0,
