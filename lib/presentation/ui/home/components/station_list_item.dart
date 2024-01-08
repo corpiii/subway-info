@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:subway_info/presentation/ui/home/components/line_number_icon.dart';
 
 final class StationListItem extends StatelessWidget {
   final String _name;
   final int _number;
-  final int _lineNumber;
+  final String _lineNumber;
 
   const StationListItem({
     super.key,
     required String name,
     required int number,
-    required int lineNumber,
+    required String lineNumber,
   })  : _name = name,
-        _number = number,현
+        _number = number,
         _lineNumber = lineNumber;
 
   @override
@@ -20,9 +21,8 @@ final class StationListItem extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
-          Text(
-            '$_lineNumber',
-            style: const TextStyle(fontSize: 20),
+          const LineNumberIcon(
+            lineNumber: "1001",
           ),
           const SizedBox(
             width: 12.0,
