@@ -13,7 +13,7 @@ final class HomeViewModel extends StateNotifier<HomeViewState> {
 
   void search(String query) {
     _searchUseCase.execute(query: query).then((value) {
-      state = state.copyWith(subwayData: value);
+      state = state.copyWith(subwayData: value.toSet().toList());
     });
   }
 }

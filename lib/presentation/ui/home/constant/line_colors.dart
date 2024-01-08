@@ -14,6 +14,7 @@ final lineColors = <String, ({String line, Color color})>{
   "1063": (line: "경중", color: const Color(0xFF77C4A3)),
   "1065": (line: "공항", color: const Color(0xFF0090D2)),
   "1067": (line: "경춘", color: const Color(0xFF0C8E72)),
+  "1075": (line: "수인분당", color: const Color(0xFFF5A200)),
   "1077": (line: "신분당", color: const Color(0xFFD4003B)),
   "1092": (line: "우이", color: const Color(0xFFB7C452)),
   "1093": (line: "서해", color: const Color(0xFF81A914)),
