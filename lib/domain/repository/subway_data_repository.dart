@@ -1,3 +1,3 @@
-abstract interface class SubwayDataRepository<T> {
-  Future<List<T>?> search(String query);
+abstract interface class SubwayDataRepository {
+  Future<Map<String, dynamic>?> search(String query);
 }

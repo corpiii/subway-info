@@ -1,18 +1,15 @@
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:subway_info/domain/model/subway_data.dart';
+import 'package:subway_info/presentation/di/view_model_provider.dart';
 import 'package:subway_info/presentation/ui/home/components/station_list_item.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final class HomeView extends StatefulWidget {
+final class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
-  TextEditingController _controller = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigo,
@@ -23,21 +20,33 @@ class _HomeViewState extends State<HomeView> {
               prefixIcon: Icon(Icons.search),
               hintText: "역 이름",
             ),
-            controller: _controller,
+            onChanged: (value) {
+              EasyDebounce.debounce(
+                'Search',
+                const Duration(milliseconds: 500),
+                () {
+                  ref.read(homeViewModelProvider.notifier).search(value);
+                },
+              );
+            },
           ),
         ),
       ),
-      body: stationList(),
+      body: stationList(ref.watch(homeViewModelProvider).subwayData),
     );
   }
 
-  Widget stationList() {
+  Widget stationList(List<SubwayData> data) {
     return ListView.separated(
       itemBuilder: (context, index) {
-        return const SizedBox(
+        return SizedBox(
           height: 100,
           width: double.infinity,
-          child: StationListItem(name: '서울역', number: '1', lineNumber: "1001"),
+          child: StationListItem(
+            name: data[index].name,
+            number: data[index].number,
+            lineNumber: data[index].lineNumber,
+          ),
         );
       },
       separatorBuilder: (context, index) {
@@ -45,7 +54,7 @@ class _HomeViewState extends State<HomeView> {
           height: 1.0,
         );
       },
-      itemCount: 50,
+      itemCount: data.length,
     );
   }
 }

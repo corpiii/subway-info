@@ -21,8 +21,12 @@ final class StationListItem extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
-          LineNumberIcon(
-            lineNumber: _lineNumber,
+          SizedBox(
+            height: 100,
+            width: 100,
+            child: LineNumberIcon(
+              lineNumber: _lineNumber,
+            ),
           ),
           const SizedBox(
             width: 12.0,
